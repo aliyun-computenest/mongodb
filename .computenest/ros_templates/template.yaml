@@ -241,7 +241,7 @@ Resources:
           Priority: 1
           SourceCidrIp: 0.0.0.0/0
           IpProtocol: tcp
-          NicType: internet
+          NicType: intranet
   InstanceGroup:
     Type: ALIYUN::ECS::InstanceGroup
     Properties:
@@ -272,8 +272,8 @@ Resources:
       InstanceType:
         Ref: EcsInstanceType
       SystemDiskCategory: cloud_essd
-      SystemDiskSize: 200
-      InternetMaxBandwidthOut: 5
+      SystemDiskSize: 40 
+      AllocatePublicIP: false
       IoOptimized: optimized
       MaxAmount: 1
   RunInstallCommand:
@@ -322,7 +322,7 @@ Outputs:
       zh-cn: mongodb 访问页面。
     Value:
       Fn::Sub:
-        - http://${ServerAddress}:27017
+        - mongodb://${ServerAddress}:27017
         - ServerAddress:
             Fn::Select:
               - 0
