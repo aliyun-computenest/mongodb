@@ -13,8 +13,8 @@ CustomParameters:
   Type: String
   AllowedValues:
   - root
-  - test
-  - admin
+  - master
+  - main
   AllowedPattern: ''
   Label: 用户名
   ConstraintDescription: ''

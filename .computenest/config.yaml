@@ -39,8 +39,8 @@ Service:
             AllowedValues:
               
               - root
-              - test
-              - admin
+              - master
+              - main
           
         Metadata:
            ParameterGroups:
@@ -75,7 +75,7 @@ Service:
                 - ZoneId
                 - VSwitchId
               ParameterValueMapping:
-                cn-hangzhou:
+                ap-southeast-1:
                   Parameters:
                     VpcId: vpc-t4nqpdxw25u2i6eidt6yo
                     ZoneId: ap-southeast-1a
@@ -106,9 +106,9 @@ Artifact:
       CommandType: RunShellScript
       CommandContent: |-
         mkdir -p /root/application
+        if [ -e "/root/code/docker-compose.yaml" ]; then cp -r "/root/code/docker-compose.yaml" "/root/application/"; fi
         if [ -e "/root/code/.env.example" ]; then cp -r "/root/code/.env.example" "/root/application/"; fi
         if [ -e "/root/code/mongodata" ]; then cp -r "/root/code/mongodata" "/root/application/"; fi
-        if [ -e "/root/code/docker-compose.yaml" ]; then cp -r "/root/code/docker-compose.yaml" "/root/application/"; fi
         cd /root/application
         cp .env.example ./.env
         sed -i 's/pull_policy: always/pull_policy: if_not_present/g' docker-compose.yaml
