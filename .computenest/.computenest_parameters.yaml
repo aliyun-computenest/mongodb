@@ -1,0 +1,22 @@
+ServiceType: private
+ArtifactSourceType: DockerCompose
+ServiceBuildRegion: cn-hangzhou
+RepoName: workhardliuzheng/mongodb
+DockerComposeEnvPath: .env.example
+RegionId: cn-hangzhou
+CustomParameters:
+- NoEcho: false
+  Type: String
+  AllowedValues:
+  - root
+  - admin
+  - master
+  AllowedPattern: ''
+  Label: 用户名
+  ConstraintDescription: ''
+  Default: root
+  Name: MONGO_INITDB_ROOT_USERNAME
+DockerComposeYamlPath: docker-compose.yaml
+Owner: workhardliuzheng
+Branch: main
+Platform: github
