@@ -1,26 +1,26 @@
-ServiceType: private
-AllowedRegions:
-- ap-southeast-1
+RoleName: ComputeNestDeploy
+ZoneId: ap-southeast-1a
+VpcId: vpc-t4nqpdxw25u2i6eidt6yo
+ServiceType: managed
+VSwitchId: vsw-t4nr1hmvcmvknt43ebmhw
 ArtifactSourceType: DockerCompose
-RepoName: aliyun-computenest/mongodb
+ServiceBuildRegion: ap-southeast-1
+RepoName: workhardliuzheng/mongodb
 DockerComposeEnvPath: .env.example
 RegionId: cn-hangzhou
 CustomParameters:
 - NoEcho: false
   Type: String
+  AllowedValues:
+  - root
+  - master
+  - main
   AllowedPattern: ''
-  Label: UserName
+  Label: 用户名
   ConstraintDescription: ''
-  Default: admin
+  Default: root
   Name: MONGO_INITDB_ROOT_USERNAME
-- NoEcho: true
-  Type: String
-  AssociationProperty: ALIYUN::ECS::Instance::Password
-  AllowedPattern: ''
-  Label: Password
-  ConstraintDescription: ''
-  Name: MONGO_INITDB_ROOT_PASSWORD
 DockerComposeYamlPath: docker-compose.yaml
-Owner: Alicloud-ComputeNest
+Owner: workhardliuzheng
 Branch: main
 Platform: github
