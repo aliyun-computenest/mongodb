@@ -1,0 +1,29 @@
+ServiceType: private
+ArtifactSourceType: DockerCompose
+ServiceBuildRegion: ap-southeast-1
+RepoName: aliyun-computenest/mongodb
+DockerComposeEnvPath: .env.example
+RegionId: cn-hangzhou
+CustomParameters:
+- NoEcho: false
+  Type: String
+  AllowedValues:
+  - root
+  - master
+  - adomin
+  AllowedPattern: ''
+  Label: 用户名
+  ConstraintDescription: ''
+  Default: root
+  Name: MONGO_INITDB_ROOT_USERNAME
+- NoEcho: false
+  Type: String
+  AllowedPattern: ''
+  Label: 密码
+  ConstraintDescription: ''
+  Default: passW0RD
+  Name: MONGO_INITDB_ROOT_PASSWORD
+DockerComposeYamlPath: docker-compose.yaml
+Owner: workhardliuzheng
+Branch: main
+Platform: github
