@@ -65,9 +65,10 @@ Service:
           - ap-southeast-1
   ServiceType: private
   ServiceInfo:
-    Locale: zh-CN
-    ShortDescription: demo
-    Image: 'resources/icons/service_logo.png'
+    # 英文版可以再配置Locale为en-US的服务信息
+    - Locale: zh-CN
+      ShortDescription: demo
+      Image: 'resources/icons/service_logo.png'
 Artifact:
   EcsImage:
     ArtifactType: EcsImage
@@ -85,9 +86,9 @@ Artifact:
       CommandType: RunShellScript
       CommandContent: |-
         mkdir -p /root/application
-        if [ -e "/root/code/docker-compose.yaml" ]; then cp -r "/root/code/docker-compose.yaml" "/root/application/"; fi
-        if [ -e "/root/code/.env.example" ]; then cp -r "/root/code/.env.example" "/root/application/"; fi
         if [ -e "/root/code/mongodata" ]; then cp -r "/root/code/mongodata" "/root/application/"; fi
+        if [ -e "/root/code/.env.example" ]; then cp -r "/root/code/.env.example" "/root/application/"; fi
+        if [ -e "/root/code/docker-compose.yaml" ]; then cp -r "/root/code/docker-compose.yaml" "/root/application/"; fi
         cd /root/application
         cp .env.example ./.env
         sed -i 's/pull_policy: always/pull_policy: if_not_present/g' docker-compose.yaml
